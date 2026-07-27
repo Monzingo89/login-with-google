@@ -1,32 +1,65 @@
 {
-  "name": "zingo-loginmaxxing",
-  "version": "1.0.0",
-  "description": "Template-ready Firebase auth package with Google + email sign-in UI.",
+  "name": "login-with-google",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A framework-light React package for responsive Google sign-in with Firebase Auth.",
   "type": "module",
-  "main": "./src/index.js",
+  "sideEffects": [
+    "./packages/login-with-google/dist/base.css"
+  ],
+  "main": "./packages/login-with-google/dist/index.js",
+  "module": "./packages/login-with-google/dist/index.js",
+  "types": "./packages/login-with-google/dist/index.d.ts",
   "exports": {
-    ".": "./src/index.js",
-    "./theme.css": "./src/theme.css"
+    ".": {
+      "types": "./packages/login-with-google/dist/index.d.ts",
+      "import": "./packages/login-with-google/dist/index.js"
+    },
+    "./base.css": "./packages/login-with-google/dist/base.css",
+    "./package.json": "./package.json"
   },
   "files": [
-    "src",
-    "template",
-    "README.md"
+    "packages/login-with-google/dist",
+    "packages/login-with-google/README.md",
+    "README.md",
+    ".env.example"
   ],
-  "keywords": [
-    "google-login",
-    "firebase-auth",
-    "email-login",
-    "auth-ui",
-    "template"
-  ],
-  "author": "Monzingo89",
-  "license": "MIT",
   "scripts": {
-    "test": "node --test",
-    "check": "node -e \"import('./src/index.js').then(() => console.log('ok'))\""
+    "build:core": "tsup packages/login-with-google/src/index.ts --format esm --dts --clean --out-dir packages/login-with-google/dist --external react --external react-dom --external firebase && cp packages/login-with-google/src/base.css packages/login-with-google/dist/base.css",
+    "build": "npm run build:core",
+    "test": "vitest run packages/login-with-google/src",
+    "typecheck": "tsc --noEmit --project packages/login-with-google/tsconfig.json",
+    "pack:check": "npm pack --dry-run .",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "firebase",
+    "google",
+    "oauth",
+    "authentication",
+    "react",
+    "login"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
-    "firebase": "^10.13.2"
+    "firebase": ">=10 <13",
+    "react": ">=18 <20",
+    "react-dom": ">=18 <20"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "firebase": "^12.13.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
   }
 }

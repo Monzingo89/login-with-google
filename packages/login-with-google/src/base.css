@@ -1,0 +1,116 @@
+:where(.lwg-page, .lwg-card, .lwg-google-button) {
+  box-sizing: border-box;
+}
+
+.lwg-page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f7f7f8;
+  color: #151515;
+}
+
+.lwg-card {
+  width: min(100%, 28rem);
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  border: 1px solid #d8d8dc;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 8%);
+}
+
+.lwg-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.lwg-copy {
+  text-align: center;
+}
+
+.lwg-copy h1,
+.lwg-copy p,
+.lwg-status,
+.lwg-error {
+  margin: 0;
+}
+
+.lwg-copy h1 {
+  font-size: clamp(1.7rem, 7vw, 2.35rem);
+  line-height: 1.1;
+}
+
+.lwg-copy p {
+  margin-top: 0.6rem;
+  color: #595961;
+  line-height: 1.5;
+}
+
+.lwg-google-button {
+  min-height: 3.25rem;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #b8b8bf;
+  border-radius: 0.7rem;
+  background: #fff;
+  color: #151515;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lwg-google-button:hover:not(:disabled) {
+  background: #f1f1f3;
+}
+
+.lwg-google-button:focus-visible {
+  outline: 3px solid #4285f4;
+  outline-offset: 3px;
+}
+
+.lwg-google-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.lwg-google-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: 0 0 auto;
+}
+
+.lwg-status,
+.lwg-error,
+.lwg-footer {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.lwg-error {
+  color: #a31324;
+}
+
+@media (max-width: 30rem) {
+  .lwg-page {
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .lwg-card {
+    min-height: 100dvh;
+    width: 100%;
+    align-content: center;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

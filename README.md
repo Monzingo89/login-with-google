@@ -1,115 +1,45 @@
-# zingo-loginmaxxing
+# login-with-google
 
-`zingo-loginmaxxing` is a template-ready npm package that makes Firebase authentication fast to set up with:
-- a professional default auth card theme
-- a Google-branded sign-in button
-- email/password sign in + sign up
+Reusable Firebase Google authentication for React applications. The optional
+black-and-gold presentation package lives separately in
+[`Monzingo89/login-with-google-theme`](https://github.com/Monzingo89/login-with-google-theme).
 
-## Install
+The core package accepts either Firebase web configuration or an existing
+Firebase `Auth` instance. That lets VCV reuse its current Firebase project
+while other consumers provide their own.
 
-### Prerequisites (all OS)
-- Node.js 18+ and npm 9+
-- A Firebase project with Google and Email/Password auth enabled
-
-### Windows (PowerShell)
-```powershell
-mkdir my-app
-cd my-app
-npm init -y
-npm install zingo-loginmaxxing firebase
-```
-
-### macOS (Terminal)
 ```bash
-mkdir my-app
-cd my-app
-npm init -y
-npm install zingo-loginmaxxing firebase
+npm install login-with-google firebase react react-dom
 ```
 
-### Linux (Terminal)
+Until the npm release is published, the public GitHub repository can be
+installed directly:
+
 ```bash
-mkdir my-app
-cd my-app
-npm init -y
-npm install zingo-loginmaxxing firebase
+npm install github:Monzingo89/login-with-google
 ```
 
-## Quick setup
+See [`packages/login-with-google/README.md`](packages/login-with-google/README.md)
+for usage. Copy [`.env.example`](.env.example) for the required public Firebase
+web configuration.
 
-1. Enable providers in Firebase Console:
-   - Authentication → Sign-in method → Google (Enable)
-   - Authentication → Sign-in method → Email/Password (Enable)
-2. Create a web app in Firebase and copy the config object.
-3. Add this to your client code:
+To add the optional theme:
 
-```js
-import { createZingoAuth } from "zingo-loginmaxxing";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  appId: "YOUR_APP_ID"
-};
-
-createZingoAuth({
-  firebaseConfig,
-  rootSelector: "#zingo-auth-root",
-  onSuccess: (user, provider) => {
-    console.log("Signed in with:", provider, user.email);
-  },
-  onError: (error) => {
-    console.error(error.message);
-  }
-});
+```bash
+npm install login-with-google-theme
 ```
 
-4. Add a mount element in HTML:
-
-```html
-<div id="zingo-auth-root"></div>
+```ts
+import 'login-with-google/base.css';
+import 'login-with-google-theme/theme.css';
 ```
 
-## Template files
-
-Starter template files are included in:
-- `/template/index.html`
-- `/template/main.js`
-
-Copy them into your project and replace the Firebase config placeholders.
-
-## API
-
-### `createZingoAuth(options)`
-Creates Firebase auth helpers and (by default) renders the styled auth UI.
-
-**Options**
-- `firebaseConfig` (required): Firebase web config
-- `rootSelector` (default `#zingo-auth-root`): where UI renders
-- `googleButtonText` (default `"Sign in with Google"`)
-- `autoRender` (default `true`)
-- `onSuccess(user, provider)` callback
-- `onError(error)` callback
-
-**Returns**
-- `signInWithGoogle()`
-- `signInWithEmail(email, password)`
-- `signUpWithEmail(email, password)`
-- `signOutUser()`
-- `onAuthStateChange(handler)`
-- `auth` and `app`
-
-## Local package development
+## Development
 
 ```bash
 npm install
-npm pack --dry-run
-```
-
-## Publish to npm
-
-```bash
-npm login
-npm publish --access public
+npm run typecheck
+npm test
+npm run build
+npm run pack:check
 ```
