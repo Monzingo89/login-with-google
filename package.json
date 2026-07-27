@@ -1,0 +1,32 @@
+{
+  "name": "zingo-loginmaxxing",
+  "version": "1.0.0",
+  "description": "Template-ready Firebase auth package with Google + email sign-in UI.",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./theme.css": "./src/theme.css"
+  },
+  "files": [
+    "src",
+    "template",
+    "README.md"
+  ],
+  "keywords": [
+    "google-login",
+    "firebase-auth",
+    "email-login",
+    "auth-ui",
+    "template"
+  ],
+  "author": "Monzingo89",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "check": "node -e \"import('./src/index.js').then(() => console.log('ok'))\""
+  },
+  "peerDependencies": {
+    "firebase": "^10.13.2"
+  }
+}
