@@ -140,13 +140,23 @@ function googleIconSvgMarkup() {
 </svg>`;
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 function buildAuthMarkup(googleButtonText) {
+  const safeGoogleButtonText = escapeHtml(googleButtonText);
   return `
     <section class="zingo-auth-theme">
       <h1 class="zingo-auth-title">Welcome back</h1>
       <button type="button" class="zingo-google-btn" id="zingo-google-btn">
         ${googleIconSvgMarkup()}
-        <span>${googleButtonText}</span>
+        <span>${safeGoogleButtonText}</span>
       </button>
       <div class="zingo-auth-divider">or continue with email</div>
       <form class="zingo-auth-form" id="zingo-auth-form">
