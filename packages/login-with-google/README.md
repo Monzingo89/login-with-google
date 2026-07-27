@@ -21,3 +21,6 @@ export function Login() {
 ```
 
 Copy `.env.example`, add the web app configuration from Firebase, enable Google in Firebase Authentication, and add every production/mobile web hostname to Firebase Authorized Domains.
+
+The optional VCV styling is published separately as
+[`login-with-google-theme`](https://github.com/Monzingo89/login-with-google-theme).

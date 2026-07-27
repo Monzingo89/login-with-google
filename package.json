@@ -5,8 +5,7 @@
   "description": "A framework-light React package for responsive Google sign-in with Firebase Auth.",
   "type": "module",
   "sideEffects": [
-    "./packages/login-with-google/dist/base.css",
-    "./packages/login-with-google-vcv-theme/theme.css"
+    "./packages/login-with-google/dist/base.css"
   ],
   "main": "./packages/login-with-google/dist/index.js",
   "module": "./packages/login-with-google/dist/index.js",
@@ -17,25 +16,20 @@
       "import": "./packages/login-with-google/dist/index.js"
     },
     "./base.css": "./packages/login-with-google/dist/base.css",
-    "./vcv-theme.css": "./packages/login-with-google-vcv-theme/theme.css",
     "./package.json": "./package.json"
   },
   "files": [
     "packages/login-with-google/dist",
     "packages/login-with-google/README.md",
-    "packages/login-with-google-vcv-theme/theme.css",
     "README.md",
     ".env.example"
   ],
-  "workspaces": [
-    "packages/login-with-google-vcv-theme"
-  ],
   "scripts": {
     "build:core": "tsup packages/login-with-google/src/index.ts --format esm --dts --clean --out-dir packages/login-with-google/dist --external react --external react-dom --external firebase && cp packages/login-with-google/src/base.css packages/login-with-google/dist/base.css",
-    "build": "npm run build:core && npm run build --workspace login-with-google-vcv-theme",
-    "test": "vitest run packages/login-with-google/src && npm run test --workspace login-with-google-vcv-theme",
+    "build": "npm run build:core",
+    "test": "vitest run packages/login-with-google/src",
     "typecheck": "tsc --noEmit --project packages/login-with-google/tsconfig.json",
-    "pack:check": "npm pack --dry-run . && npm pack --dry-run --workspace login-with-google-vcv-theme",
+    "pack:check": "npm pack --dry-run .",
     "prepare": "npm run build"
   },
   "keywords": [
